@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "POI.Data", "POI.Data\POI.Da
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "POIDatabase", "POIDatabase\POIDatabase.sqlproj", "{EF548799-8C29-40FD-A5C8-47568402BB56}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POI.Tests", "POI.Tests\POI.Tests.csproj", "{24C29931-E042-4087-ACB8-FC35010EC84A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{EF548799-8C29-40FD-A5C8-47568402BB56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF548799-8C29-40FD-A5C8-47568402BB56}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EF548799-8C29-40FD-A5C8-47568402BB56}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{24C29931-E042-4087-ACB8-FC35010EC84A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24C29931-E042-4087-ACB8-FC35010EC84A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24C29931-E042-4087-ACB8-FC35010EC84A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24C29931-E042-4087-ACB8-FC35010EC84A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -22,9 +22,10 @@ namespace POI.Data.Repositories.Places
             return _places.SingleOrDefault(p => p.Id == id);
         }
 
-        public async Task Create(Place item)
+        public async Task<Place> Create(Place item)
         {
             _places.Add(item);
+            return item;
         }
 
         public Task Update(Place item)

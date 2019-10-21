@@ -1,3 +1,4 @@
+using System.Data;
 using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,7 +33,7 @@ namespace POI.API
             var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json");
             var config = builder.Build();
             //Add repositories
-            services.AddTransient<ISqlConnector>(c => new SqlConnector(config));
+            services.AddTransient<IDbConnection>(c => new SqlConnector(config).GetConnection());
             services.AddTransient<IProvider<Place>, StaticPlaceRepository>();
             services.AddTransient<IProcessor<Place>, StaticPlaceRepository>();
             //services.AddTransient<IPlaceProvider>(r => new DbPlaceRepository(config["ConnectionString:POIDatabase"]));

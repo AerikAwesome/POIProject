@@ -1,33 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
+using Dapper.Contrib.Extensions;
 using POI.Common.Models;
 
 namespace POI.Data.Repositories.Places
 {
     public class DbPlaceProvider : IProvider<Place>
     {
-        private readonly ISqlConnector _sqlConnector;
+        private readonly IDbConnection _sqlConnection;
         private static string _queryString = "select id, type, name, loc_long as Longitude, loc_lat as Latitude";
 
-        public DbPlaceProvider(ISqlConnector sqlConnector)
+        public DbPlaceProvider(IDbConnection sqlConnection)
         {
-            _sqlConnector = sqlConnector;
+            _sqlConnection = sqlConnection;
         }
 
         public async Task<IEnumerable<Place>> Get()
         {
             IEnumerable<Place> places;
-            await using (var connection = _sqlConnector.GetConnection())
+            places = await _sqlConnection.QueryAsync<Place, Location, Place>(_queryString, map:((place, location) =>
             {
-                places = await connection.QueryAsync<Place, Location, Place>(_queryString, map:((place, location) =>
-                {
-                    place.Location = location;
-                    return place;
-                }), splitOn: "Longitude");
-            }
+                place.Location = location;
+                return place;
+            }), splitOn: "Longitude").ConfigureAwait(false);
 
             return places;
         }

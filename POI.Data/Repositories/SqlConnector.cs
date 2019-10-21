@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 
 namespace POI.Data.Repositories
 {
-    public class SqlConnector : ISqlConnector
+    public class SqlConnector
     {
         private readonly string _connectionString;
 
@@ -15,7 +16,7 @@ namespace POI.Data.Repositories
             _connectionString = config.GetConnectionString("POIDatabase");
         }
 
-        public SqlConnection GetConnection()
+        public IDbConnection GetConnection()
         {
             return new SqlConnection(_connectionString);
         }

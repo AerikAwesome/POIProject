@@ -8,7 +8,7 @@ namespace POI.Data.Repositories
 {
     public interface IProcessor<T> where T : BaseDatabaseObject
     {
-        Task Create(T item);
+        Task<T> Create(T item);
         Task Update(T item);
         Task Delete(int itemId);
     }

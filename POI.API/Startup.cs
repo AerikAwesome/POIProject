@@ -34,8 +34,8 @@ namespace POI.API
             var config = builder.Build();
             //Add repositories
             services.AddTransient<IDbConnection>(c => new SqlConnector(config).GetConnection());
-            services.AddTransient<IProvider<Place>, StaticPlaceRepository>();
-            services.AddTransient<IProcessor<Place>, StaticPlaceRepository>();
+            services.AddTransient<IProvider<Place>, DbPlaceProvider>();
+            services.AddTransient<IProcessor<Place>, DbPlaceProcessor>();
             //services.AddTransient<IPlaceProvider>(r => new DbPlaceRepository(config["ConnectionString:POIDatabase"]));
         }
 

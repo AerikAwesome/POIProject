@@ -6,7 +6,7 @@ using POI.Common.Models;
 
 namespace POI.Data.Repositories
 {
-    public interface IProcessor<T> where T : BaseDatabaseObject
+    public interface IProcessor<T>
     {
         Task<T> Create(T item);
         Task Update(T item);

@@ -10,7 +10,7 @@ namespace POI.Data.Repositories.Places
     {
         private static readonly List<Place> _places = new List<Place>
         {
-            new Place{Id = 1, Name = "TestPlace", Type = PlaceType.Place, Location = new Location{Latitude = 1, Longitude = 1}}
+            new Place{Id = 1, Name = "TestPlace", Type = PlaceType.Place}
         };
         public async Task<IEnumerable<Place>> Get()
         {

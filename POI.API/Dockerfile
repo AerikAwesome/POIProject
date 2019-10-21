@@ -8,16 +8,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.0-nanoserver-1903 AS build
 WORKDIR /src
-COPY ["9292POI_API/9292POI_API.csproj", "9292POI_API/"]
-RUN dotnet restore "9292POI_API/9292POI_API.csproj"
+COPY ["POI.API/POI.API.csproj", "POI.API/"]
+RUN dotnet restore "POI.API/POI.API.csproj"
 COPY . .
-WORKDIR "/src/9292POI_API"
-RUN dotnet build "9292POI_API.csproj" -c Release -o /app/build
+WORKDIR "/src/POI.API"
+RUN dotnet build "POI.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "9292POI_API.csproj" -c Release -o /app/publish
+RUN dotnet publish "POI.API.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "9292POI_API.dll"]
+ENTRYPOINT ["dotnet", "POI.API.dll"]

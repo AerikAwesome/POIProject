@@ -12,7 +12,6 @@ namespace POI.Data.Repositories.Places
     public class DbPlaceProvider : IProvider<Place>
     {
         private readonly IDbConnection _sqlConnection;
-        private static string _queryString = "select id, type, name, loc_long as Longitude, loc_lat as Latitude";
 
         public DbPlaceProvider(IDbConnection sqlConnection)
         {
@@ -21,19 +20,12 @@ namespace POI.Data.Repositories.Places
 
         public async Task<IEnumerable<Place>> Get()
         {
-            IEnumerable<Place> places;
-            places = await _sqlConnection.QueryAsync<Place, Location, Place>(_queryString, map:((place, location) =>
-            {
-                place.Location = location;
-                return place;
-            }), splitOn: "Longitude").ConfigureAwait(false);
-
-            return places;
+            return await _sqlConnection.GetAllAsync<Place>().ConfigureAwait(false);
         }
 
-        public Task<Place> Get(int id)
+        public async Task<Place> Get(int id)
         {
-            throw new NotImplementedException();
+            return await _sqlConnection.GetAsync<Place>(id).ConfigureAwait(false);
         }
     }
 }

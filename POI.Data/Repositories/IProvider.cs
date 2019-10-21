@@ -6,7 +6,7 @@ using POI.Common.Models;
 
 namespace POI.Data.Repositories
 {
-    public interface IProvider<T> where T : BaseDatabaseObject
+    public interface IProvider<T>
     {
         Task<IEnumerable<T>> Get();
         Task<T> Get(int id);

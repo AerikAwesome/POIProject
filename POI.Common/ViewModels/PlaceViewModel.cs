@@ -13,6 +13,8 @@ namespace POI.Common.ViewModels
         public string Address { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
+        public string LinkTo { get; set; }
+        public string LinkFrom { get; set; }
         public List<EventViewModel> Events { get; set; }
 
         public PlaceViewModel(){}
@@ -26,6 +28,8 @@ namespace POI.Common.ViewModels
             Address = place.Address;
             Latitude = place.Coordinates.Lat.Value;
             Longitude = place.Coordinates.Long.Value;
+            LinkTo = $"http://9292.nl/?naar={Address}".ToLower();
+            LinkFrom = $"http://9292.nl/?van={Address}".ToLower();
             Events = events.ToList();
         }
     }

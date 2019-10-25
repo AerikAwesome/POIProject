@@ -19,7 +19,7 @@ namespace POI.Data.Repositories.Management.Static
                 Visible = true, 
                 Name = "Beatrix theater", 
                 Description = "Dit is een theater", 
-                Address = "Jaarbeursplein 6A, 3521 AL, Utrecht", 
+                Address = "Utrecht_Jaarbeursplein-6A", 
                 Coordinates = SqlGeography.Point(52.088301631793456, 5.107164851899615, 4326)
             }
         };

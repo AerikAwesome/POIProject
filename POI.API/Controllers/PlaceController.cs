@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using POI.Common.Models;
+using POI.Common.ViewModels;
 using POI.Data.Repositories;
-using POI.Data.Repositories.Places;
+using POI.Data.Repositories.Public;
 
 namespace POI.API.Controllers
 {
@@ -14,48 +15,17 @@ namespace POI.API.Controllers
     [ApiController]
     public class PlaceController : ControllerBase
     {
-        private readonly IProvider<Place> _placeProvider;
-        private readonly IProcessor<Place> _placeProcessor;
+        private readonly IPublicPlaceProvider _placeProvider;
 
-        public PlaceController(IProvider<Place> placeProvider, IProcessor<Place> placeProcessor)
+        public PlaceController(IPublicPlaceProvider placeProvider)
         {
             _placeProvider = placeProvider;
-            _placeProcessor = placeProcessor;
         }
 
-        // GET: api/Place
         [HttpGet]
-        public async Task<IEnumerable<Place>> Get()
+        public async Task<IEnumerable<PlaceViewModel>> GetInRadius(double latitude, double longitude, double radius)
         {
-            return await _placeProvider.Get();
-        }
-
-        // GET: api/Place/5
-        [HttpGet("{id}", Name = "Get")]
-        public async Task<Place> Get(int id)
-        {
-            return await _placeProvider.Get(id);
-        }
-
-        // POST: api/Place
-        [HttpPost]
-        public async Task Post([FromBody] Place place)
-        {
-            await _placeProcessor.Create(place);
-        }
-
-        // PUT: api/Place/5
-        [HttpPut("{id}")]
-        public async Task Put(int id, [FromBody] Place place)
-        {
-            await _placeProcessor.Update(place);
-        }
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public async Task Delete(int id)
-        {
-            await _placeProcessor.Delete(id);
+            return await _placeProvider.GetInRadius(latitude, longitude, radius);
         }
     }
 }

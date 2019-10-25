@@ -4,7 +4,5 @@
     [PlaceId] INT NULL, 
     [Name] NVARCHAR(50) NULL, 
     [Description] NVARCHAR(MAX) NULL, 
-    [StartDate] DATETIME2 NULL, 
-    [EndDate] DATETIME2 NULL, 
     CONSTRAINT [FK_Events_ToPlaces] FOREIGN KEY ([PlaceId]) REFERENCES [Places]([Id]) 
 )

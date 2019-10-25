@@ -8,7 +8,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using POI.Common.Models;
 using POI.Data.Repositories;
-using POI.Data.Repositories.Places;
+using POI.Data.Repositories.Management;
+using POI.Data.Repositories.Management.Static;
+using POI.Data.Repositories.Public;
 
 namespace POI.API
 {
@@ -34,8 +36,17 @@ namespace POI.API
             var config = builder.Build();
             //Add repositories
             services.AddTransient<IDbConnection>(c => new SqlConnector(config).GetConnection());
-            services.AddTransient<IProvider<Place>, DbPlaceProvider>();
-            services.AddTransient<IProcessor<Place>, DbPlaceProcessor>();
+            services.AddTransient<IProvider<Place>, StaticPlaceRepository>();
+            services.AddTransient<IProcessor<Place>, StaticPlaceRepository>();
+            services.AddTransient<IPublicPlaceProvider, ReadOnlyStaticPlaceRepository>();
+
+            services.AddTransient<IEventProvider, StaticEventRepository>();
+            services.AddTransient<IProcessor<Event>, StaticEventRepository>();
+
+            services.AddTransient<IScheduleProvider, StaticScheduleRepository>();
+            services.AddTransient<IProcessor<Schedule>, StaticScheduleRepository>();
+
+            services.AddTransient<IPublicPlaceProvider, ReadOnlyStaticPlaceRepository>();
             //services.AddTransient<IPlaceProvider>(r => new DbPlaceRepository(config["ConnectionString:POIDatabase"]));
         }
 

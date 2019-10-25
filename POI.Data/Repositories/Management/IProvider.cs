@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using POI.Common.Models;
 
-namespace POI.Data.Repositories
+namespace POI.Data.Repositories.Management
 {
     public interface IProvider<T>
     {

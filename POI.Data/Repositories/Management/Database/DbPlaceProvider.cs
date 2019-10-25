@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
-using System.Text;
 using System.Threading.Tasks;
-using Dapper;
 using Dapper.Contrib.Extensions;
 using POI.Common.Models;
 
-namespace POI.Data.Repositories.Places
+namespace POI.Data.Repositories.Management.Database
 {
     public class DbPlaceProvider : IProvider<Place>
     {

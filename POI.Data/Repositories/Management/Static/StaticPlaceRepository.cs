@@ -1,17 +1,29 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.SqlServer.Types;
 using POI.Common.Models;
+
 #pragma warning disable 1998
 
-namespace POI.Data.Repositories.Places
+namespace POI.Data.Repositories.Management.Static
 {
     public class StaticPlaceRepository : IProvider<Place>, IProcessor<Place>
     {
+
         private static readonly List<Place> _places = new List<Place>
         {
-            new Place{Id = 1, Name = "TestPlace", Type = PlaceType.Place}
+            new Place
+            {
+                Id = 1, 
+                Visible = true, 
+                Name = "Beatrix theater", 
+                Description = "Dit is een theater", 
+                Address = "Jaarbeursplein 6A, 3521 AL, Utrecht", 
+                Coordinates = SqlGeography.Point(52.088301631793456, 5.107164851899615, 4326)
+            }
         };
+
         public async Task<IEnumerable<Place>> Get()
         {
             return _places;
@@ -21,6 +33,7 @@ namespace POI.Data.Repositories.Places
         {
             return _places.SingleOrDefault(p => p.Id == id);
         }
+
 
         public async Task<Place> Create(Place item)
         {

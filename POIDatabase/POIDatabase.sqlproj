@@ -60,6 +60,7 @@
   <ItemGroup>
     <Build Include="Places.sql" />
     <Build Include="Events.sql" />
+    <Build Include="Schedules.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="POIDatabase.refactorlog" />
